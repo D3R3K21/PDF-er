@@ -8,7 +8,7 @@ RUN cd /go/src/integrate-pdf-service \
 
 FROM golang:1.11-stretch
 COPY --from=build /bin/integrate-pdf-service /bin/integrate-pdf-service
-COPY ./integrate-service-facebook.sh /bin/integrate-service-facebook.sh
+COPY ./integrate-pdf-service.sh /bin/integrate-pdf-service.sh
 RUN apt-get update && apt-get install -y ca-certificates jq && chmod 700 /bin/integrate-*
 WORKDIR /bin
 ENV CONSUL_SERVER consul.service.consul:8500/v1/kv/lde/
