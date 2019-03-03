@@ -1,13 +1,13 @@
 package service
 
-import "github.com/jung-kurt/gofpdf"
+import (
+	"integrate-pdf-service/models"
 
-func SavePDF(pdf *gofpdf.Fpdf) error {
-	return pdf.OutputFileAndClose("tstSigs.pdf")
-}
+	"github.com/jung-kurt/gofpdf"
+)
 
-// ## The Initial PDF document
-func NewSignature(name, company, email, ip, date string) *gofpdf.Fpdf {
+//NewSignature - Generate the PDF Signautre using the supplied paramters
+func GenerateSignature(model models.RetrieveSignatureRequest) *gofpdf.Fpdf {
 	pdf := gofpdf.New("L", "pt", "Letter", "")
 	pdf.AddPage()
 	pdf.SetFont("Times", "B", 10)
@@ -20,19 +20,19 @@ func NewSignature(name, company, email, ip, date string) *gofpdf.Fpdf {
 	pdf.ImageOptions("integrate.png", centerW, centerH, imgWidth, imgHeight, false, gofpdf.ImageOptions{ImageType: "png", ReadDpi: true}, 0, "")
 	pdf.Ln(centerH + 15)
 	pdf.Cell(cellCenter, 10, " ")
-	pdf.Cell(40, 10, "Signee Name : "+name)
+	pdf.Cell(40, 10, "Signee Name : "+model.Name)
 	pdf.Ln(25)
 	pdf.Cell(cellCenter, 10, " ")
-	pdf.Cell(40, 10, "Signee Company : "+company)
+	pdf.Cell(40, 10, "Signee Company : "+model.Company)
 	pdf.Ln(25)
 	pdf.Cell(cellCenter, 10, " ")
-	pdf.Cell(40, 10, "Signee Email : "+email)
+	pdf.Cell(40, 10, "Signee Email : "+model.Email)
 	pdf.Ln(25)
 	pdf.Cell(cellCenter, 10, " ")
-	pdf.Cell(40, 10, "Signee IP : "+ip)
+	pdf.Cell(40, 10, "Signee IP : "+model.IP)
 	pdf.Ln(25)
 	pdf.Cell(cellCenter, 10, " ")
-	pdf.Cell(40, 10, "Signed Date : "+date)
+	pdf.Cell(40, 10, "Signed Date : "+model.Date)
 	pdf.Ln(25)
 	pdf.Cell(cellCenter, 10, " ")
 
