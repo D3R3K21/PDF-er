@@ -9,6 +9,12 @@ import (
 	"net/http"
 )
 
+//HealthCheck - returns server status
+func HealthCheck(response http.ResponseWriter, r *http.Request) {
+	response.WriteHeader(200)
+	response.Write([]byte("{\"result\":\"Everything is peachy in goland, server up\"}"))
+}
+
 //SignatureFunc - http://release-facebook.integrate.team:35430/signature?name=derek&email=drose@integrate.com&ip=192.168.1.1&company=integrate inc
 func SignatureFunc(response http.ResponseWriter, r *http.Request) {
 

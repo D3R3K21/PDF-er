@@ -20,4 +20,10 @@ var routes = Routes{
 		Pattern:     "/signature",
 		HandlerFunc: SignatureFunc,
 	},
+	Route{
+		"HealthCheck",
+		"GET",
+		"/health",
+		HealthCheck,
+	},
 }
