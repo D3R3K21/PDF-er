@@ -7,6 +7,7 @@ import (
 	service "integrate-pdf-service/pdf-service"
 	"io"
 	"net/http"
+	"time"
 )
 
 //HealthCheck - returns server status
@@ -26,6 +27,9 @@ func SignatureFunc(response http.ResponseWriter, r *http.Request) {
 		Email:   r.URL.Query().Get("email"),
 		IP:      r.URL.Query().Get("ip"),
 		Name:    r.URL.Query().Get("name"),
+	}
+	if requestModel.Date == "" {
+		requestModel.Date = time.Now().String()
 	}
 	fmt.Println("Company :" + requestModel.Company)
 	fmt.Println("Date :" + requestModel.Date)
