@@ -8,12 +8,12 @@ RUN cd /go/src/integrate-pdf-service \
 
 FROM golang:1.11-stretch
 COPY --from=build /bin/integrate-pdf-service /bin/integrate-pdf-service
-COPY ./integrate-pdf-service.sh /bin/integrate-pdf-service.sh
+COPY ./integrate-service-pdf.sh /bin/integrate-service-pdf.sh
 RUN apt-get update && apt-get install -y ca-certificates jq && chmod 700 /bin/integrate-*
 WORKDIR /bin
 ENV CONSUL_SERVER consul.service.consul:8500/v1/kv/lde/
 ENV SERVICE_80_CHECK_HTTP /health
 ENV SERVICE_NAME integrate-pdf-service
 EXPOSE 80
-ENTRYPOINT ["./integrate-pdf-service.sh"]
+ENTRYPOINT ["./integrate-service-pdf.sh"]
 CMD ["integrate-pdf-service"]
