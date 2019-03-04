@@ -9,6 +9,8 @@ RUN cd /go/src/integrate-pdf-service \
 FROM golang:1.11-stretch
 COPY --from=build /bin/integrate-pdf-service /bin/integrate-pdf-service
 COPY ./integrate-service-pdf.sh /bin/integrate-service-pdf.sh
+COPY --from=build /bin/integrate.png /bin/integrate.png
+
 RUN apt-get update && apt-get install -y ca-certificates jq && chmod 700 /bin/integrate-*
 WORKDIR /bin
 ENV CONSUL_SERVER consul.service.consul:8500/v1/kv/lde/

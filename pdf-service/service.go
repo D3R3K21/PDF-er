@@ -21,7 +21,7 @@ func GenerateSignature(model models.RetrieveSignatureRequest) *gofpdf.Fpdf {
 	centerW := ((docW / 2) - (imgWidth / 2)) - 50
 	centerH := ((docH / 2) - (imgHeight / 2)) - 50
 	cellCenter := 10 + centerW
-	//pdf.ImageOptions("integrate.png", centerW, centerH, imgWidth, imgHeight, false, gofpdf.ImageOptions{ImageType: "png", ReadDpi: true}, 0, "")
+	pdf.ImageOptions("integrate.png", centerW, centerH, imgWidth, imgHeight, false, gofpdf.ImageOptions{ImageType: "png", ReadDpi: true}, 0, "")
 	pdf.Ln(centerH + 15)
 	pdf.Cell(cellCenter, 10, " ")
 	pdf.Cell(40, 10, "Signee Name : "+model.Name)
